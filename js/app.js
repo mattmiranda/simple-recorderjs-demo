@@ -12,11 +12,41 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
+var sentenceText = document.getElementById("sentence");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
+
+// Matt's edit - TIMIT sentences
+var sentenceList = ["She had your dark suit in greasy wash water all year.",
+"Don't ask me to carry an oily rag like that. ",
+"A boring novel is a superb sleeping pill. ",
+"Call an ambulance for medical assistance. ",
+"We saw eight tiny icicles below our roof. ",
+"Each untimely income loss coincided with the breakdown of a heating system part. ",
+"Jeff thought you argued in favor of a centrifuge purchase. ",
+"The sermon emphasized the need for affirmative action. ",
+"Kindergarten children decorate their classrooms for all holidays. ",
+"Cory and Trish played tag with beach balls for hours. ",
+"The frightened child was gently subdued by his big brother. ",
+"The tooth fairy forgot to come when Roger's tooth fell out. ",
+"Alice's ability to work without supervision is noteworthy. ",
+"Special task forces rescue hostages from kidnappers. ",
+"If Carol comes tomorrow, have her arrange for a meeting at two. ",
+"Military personnel are expected to obey government orders. ",
+"Laugh, dance, and sing if fortune smiles upon you. ",
+"The fish began to leap frantically on the surface of the small lake. ",
+"The easygoing zoologist relaxed throughout the voyage. ",
+"Brush fires are common in the dry underbrush of Nevada. ",
+"How much will it cost to do any necessary modernizing and redecorating? ",
+"Was she just naturally sloppy about everything but her physical appearance? ",
+"Is a relaxed home atmosphere enough to help her outgrow these traits? ",
+"The same shelter could be built into an embankment or below ground level. "];
+var i = 0;
+var listLength = sentenceList.length;
+sentenceText.innerHTML= "("+ (i+1) + "/" + listLength + ") " + sentenceList[i];
 
 function startRecording() {
 	console.log("recordButton clicked");
@@ -164,4 +194,10 @@ function createDownloadLink(blob) {
 
 	//add the li element to the ol
 	recordingsList.appendChild(li);
+	
+	// Increment counter and change the sentence to be read
+	i++;
+	if(i < listLength){
+    sentenceText.innerHTML= "("+ (i+1) + "/" + listLength + ") " + sentenceList[i];
+	}
 }
