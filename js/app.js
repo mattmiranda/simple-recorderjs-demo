@@ -19,7 +19,7 @@ recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
 
-// Matt's edit - TIMIT sentences
+// Matt's edit
 var sentenceList = ["She had your dark suit in greasy wash water all year.",
 "Don't ask me to carry an oily rag like that. ",
 "A boring novel is a superb sleeping pill. ",
@@ -153,7 +153,10 @@ function createDownloadLink(blob) {
 	var link = document.createElement('a');
 
 	//name of .wav file to use during upload and download (without extendion)
-	var filename = new Date().toISOString();
+	var date = new Date().toISOString();
+	//the filename is the sentence transcript itself
+	var cleanSentence = sentenceList[i].replace(/\W/g, '')
+	var filename = cleanSentence.substring(0,8) + date.substring(date.length-5,date.length)
 
 	//add controls to the <audio> element
 	au.controls = true;
